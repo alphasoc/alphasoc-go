@@ -29,7 +29,6 @@ docs/IpEvent.md
 docs/IpEventAllOf.md
 docs/KeyManagementApi.md
 docs/KeyRequestBody.md
-docs/KeyRequestBodyAllOf.md
 docs/KeyRequestResponseBody.md
 docs/KeyResetRequestBody.md
 docs/LeaseEvent.md
@@ -60,7 +59,6 @@ model_http_event_all_of.go
 model_ip_event.go
 model_ip_event_all_of.go
 model_key_request_body.go
-model_key_request_body_all_of.go
 model_key_request_response_body.go
 model_key_reset_request_body.go
 model_lease_event.go

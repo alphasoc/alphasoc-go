@@ -16,8 +16,7 @@ import (
 
 // KeyRequestBody struct for KeyRequestBody
 type KeyRequestBody struct {
-	Name *string `json:"name,omitempty"`
-	Version *string `json:"version,omitempty"`
+	Platform *Platform `json:"platform,omitempty"`
 	Uname *string `json:"uname,omitempty"`
 	Token *string `json:"token,omitempty"`
 }
@@ -39,68 +38,36 @@ func NewKeyRequestBodyWithDefaults() *KeyRequestBody {
 	return &this
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *KeyRequestBody) GetName() string {
-	if o == nil || o.Name == nil {
-		var ret string
+// GetPlatform returns the Platform field value if set, zero value otherwise.
+func (o *KeyRequestBody) GetPlatform() Platform {
+	if o == nil || o.Platform == nil {
+		var ret Platform
 		return ret
 	}
-	return *o.Name
+	return *o.Platform
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetPlatformOk returns a tuple with the Platform field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KeyRequestBody) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+func (o *KeyRequestBody) GetPlatformOk() (*Platform, bool) {
+	if o == nil || o.Platform == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return o.Platform, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *KeyRequestBody) HasName() bool {
-	if o != nil && o.Name != nil {
+// HasPlatform returns a boolean if a field has been set.
+func (o *KeyRequestBody) HasPlatform() bool {
+	if o != nil && o.Platform != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *KeyRequestBody) SetName(v string) {
-	o.Name = &v
-}
-
-// GetVersion returns the Version field value if set, zero value otherwise.
-func (o *KeyRequestBody) GetVersion() string {
-	if o == nil || o.Version == nil {
-		var ret string
-		return ret
-	}
-	return *o.Version
-}
-
-// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *KeyRequestBody) GetVersionOk() (*string, bool) {
-	if o == nil || o.Version == nil {
-		return nil, false
-	}
-	return o.Version, true
-}
-
-// HasVersion returns a boolean if a field has been set.
-func (o *KeyRequestBody) HasVersion() bool {
-	if o != nil && o.Version != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetVersion gets a reference to the given string and assigns it to the Version field.
-func (o *KeyRequestBody) SetVersion(v string) {
-	o.Version = &v
+// SetPlatform gets a reference to the given Platform and assigns it to the Platform field.
+func (o *KeyRequestBody) SetPlatform(v Platform) {
+	o.Platform = &v
 }
 
 // GetUname returns the Uname field value if set, zero value otherwise.
@@ -169,11 +136,8 @@ func (o *KeyRequestBody) SetToken(v string) {
 
 func (o KeyRequestBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Version != nil {
-		toSerialize["version"] = o.Version
+	if o.Platform != nil {
+		toSerialize["platform"] = o.Platform
 	}
 	if o.Uname != nil {
 		toSerialize["uname"] = o.Uname

@@ -111,7 +111,6 @@ Class | Method | HTTP request | Description
  - [IpEvent](docs/IpEvent.md)
  - [IpEventAllOf](docs/IpEventAllOf.md)
  - [KeyRequestBody](docs/KeyRequestBody.md)
- - [KeyRequestBodyAllOf](docs/KeyRequestBodyAllOf.md)
  - [KeyRequestResponseBody](docs/KeyRequestResponseBody.md)
  - [KeyResetRequestBody](docs/KeyResetRequestBody.md)
  - [LeaseEvent](docs/LeaseEvent.md)

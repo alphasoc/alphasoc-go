@@ -4,8 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
-**Version** | Pointer to **string** |  | [optional] 
+**Platform** | Pointer to [**Platform**](Platform.md) |  | [optional] 
 **Uname** | Pointer to **string** |  | [optional] 
 **Token** | Pointer to **string** |  | [optional] 
 
@@ -28,55 +27,30 @@ NewKeyRequestBodyWithDefaults instantiates a new KeyRequestBody object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetName
+### GetPlatform
 
-`func (o *KeyRequestBody) GetName() string`
+`func (o *KeyRequestBody) GetPlatform() Platform`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetPlatform returns the Platform field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetPlatformOk
 
-`func (o *KeyRequestBody) GetNameOk() (*string, bool)`
+`func (o *KeyRequestBody) GetPlatformOk() (*Platform, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetPlatformOk returns a tuple with the Platform field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetPlatform
 
-`func (o *KeyRequestBody) SetName(v string)`
+`func (o *KeyRequestBody) SetPlatform(v Platform)`
 
-SetName sets Name field to given value.
+SetPlatform sets Platform field to given value.
 
-### HasName
+### HasPlatform
 
-`func (o *KeyRequestBody) HasName() bool`
+`func (o *KeyRequestBody) HasPlatform() bool`
 
-HasName returns a boolean if a field has been set.
-
-### GetVersion
-
-`func (o *KeyRequestBody) GetVersion() string`
-
-GetVersion returns the Version field if non-nil, zero value otherwise.
-
-### GetVersionOk
-
-`func (o *KeyRequestBody) GetVersionOk() (*string, bool)`
-
-GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersion
-
-`func (o *KeyRequestBody) SetVersion(v string)`
-
-SetVersion sets Version field to given value.
-
-### HasVersion
-
-`func (o *KeyRequestBody) HasVersion() bool`
-
-HasVersion returns a boolean if a field has been set.
+HasPlatform returns a boolean if a field has been set.
 
 ### GetUname
 
