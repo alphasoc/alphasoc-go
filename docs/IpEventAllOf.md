@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DestIP** | Pointer to **string** |  | [optional] 
-**DestPort** | Pointer to **int32** |  | [optional] 
-**Proto** | Pointer to **string** |  | [optional] 
-**BytesIn** | Pointer to **int64** |  | [optional] 
-**BytesOut** | Pointer to **int64** |  | [optional] 
-**App** | Pointer to **string** |  | [optional] 
-**Action** | Pointer to **string** |  | [optional] 
-**Duration** | Pointer to **float64** |  | [optional] 
+**DestIP** | Pointer to **string** | Destination IP | [optional] 
+**DestPort** | Pointer to **int32** | Destination port | [optional] 
+**Proto** | Pointer to **string** | Transport layer protocol | [optional] 
+**BytesIn** | Pointer to **int64** | Number of incoming bytes | [optional] 
+**BytesOut** | Pointer to **int64** | Number of outgoing bytes | [optional] 
+**App** | Pointer to **string** | Application layer protocol | [optional] 
+**Action** | Pointer to **string** | Defines if event was allowed or denied | [optional] 
+**Duration** | Pointer to **float64** | Duration of connection | [optional] 
 
 ## Methods
 

@@ -1,12 +1,6 @@
 .gitignore
-.openapi-generator-ignore
-.travis.yml
 README.md
 api/openapi.yaml
-api_account_management.go
-api_data_processing.go
-api_inventory.go
-api_key_management.go
 client.go
 configuration.go
 docs/AccountManagementApi.md

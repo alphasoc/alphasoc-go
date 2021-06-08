@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Today** | Pointer to **time.Time** |  | [optional] 
-**Registered** | Pointer to **bool** |  | [optional] 
-**Expired** | Pointer to **bool** |  | [optional] 
-**ExpirationDate** | Pointer to **time.Time** |  | [optional] 
-**EndpointsSeenToday** | Pointer to **int32** |  | [optional] 
-**Messages** | Pointer to [**[]Message**](Message.md) |  | [optional] 
+**Today** | Pointer to **time.Time** | Today&#39;s date | [optional] 
+**Registered** | Pointer to **bool** | Registration status | [optional] 
+**Expired** | Pointer to **bool** | Key expiration status | [optional] 
+**ExpirationDate** | Pointer to **time.Time** | Key expiration date | [optional] 
+**EndpointsSeenToday** | Pointer to **int32** | Key usage status | [optional] 
+**Messages** | Pointer to [**[]Message**](Message.md) | Human readable messages from the system | [optional] 
 
 ## Methods
 

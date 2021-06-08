@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Flags** | Pointer to [**map[string]Flag**](Flag.md) |  | [optional] 
+**Flags** | Pointer to [**map[string]Flag**](Flag.md) | Dictionary that contains flags descriptions | [optional] 
 
 ## Methods
 

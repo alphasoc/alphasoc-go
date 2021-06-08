@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | Pointer to **string** |  | [optional] 
-**Method** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **int64** |  | [optional] 
-**App** | Pointer to **string** |  | [optional] 
-**Action** | Pointer to **string** |  | [optional] 
-**BytesIn** | Pointer to **int64** |  | [optional] 
-**BytesOut** | Pointer to **int64** |  | [optional] 
-**ContentType** | Pointer to **string** |  | [optional] 
+**Url** | Pointer to **string** | HTTP request URL | [optional] 
+**Method** | Pointer to **string** | HTTP method | [optional] 
+**Status** | Pointer to **int64** | HTTP response status code | [optional] 
+**App** | Pointer to **string** | Application layer protocol | [optional] 
+**Action** | Pointer to **string** | Defines if event was allowed or denied | [optional] 
+**BytesIn** | Pointer to **int64** | Number of incoming bytes | [optional] 
+**BytesOut** | Pointer to **int64** | Number of outgoing bytes | [optional] 
+**ContentType** | Pointer to **string** | Content type of HTTP event | [optional] 
 **Referrer** | Pointer to **string** |  | [optional] 
-**UserAgent** | Pointer to **string** |  | [optional] 
+**UserAgent** | Pointer to **string** | User Agent used in HTTP event | [optional] 
 
 ## Methods
 

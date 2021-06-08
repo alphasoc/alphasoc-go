@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
+**Title** | Pointer to **string** | Flag description | [optional] 
+**Type** | Pointer to **string** | Flag type | [optional] 
 
 ## Methods
 

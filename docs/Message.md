@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Level** | Pointer to **int32** |  | [optional] 
-**Body** | Pointer to **string** |  | [optional] 
+**Level** | Pointer to **int32** | Message level|1 - INFO|2 - WARN|3 - ERROR | [optional] 
+**Body** | Pointer to **string** | Message text | [optional] 
 
 ## Methods
 

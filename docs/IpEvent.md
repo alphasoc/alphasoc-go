@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ts** | Pointer to **time.Time** |  | [optional] 
-**SrcIP** | Pointer to **string** |  | [optional] 
-**SrcPort** | Pointer to **int32** |  | [optional] 
-**SrcHost** | Pointer to **string** |  | [optional] 
-**SrcMac** | Pointer to **string** |  | [optional] 
-**SrcUser** | Pointer to **string** |  | [optional] 
-**SrcID** | Pointer to **string** |  | [optional] 
-**DestIP** | Pointer to **string** |  | [optional] 
-**DestPort** | Pointer to **int32** |  | [optional] 
-**Proto** | Pointer to **string** |  | [optional] 
-**BytesIn** | Pointer to **int64** |  | [optional] 
-**BytesOut** | Pointer to **int64** |  | [optional] 
-**App** | Pointer to **string** |  | [optional] 
-**Action** | Pointer to **string** |  | [optional] 
-**Duration** | Pointer to **float64** |  | [optional] 
+**Ts** | Pointer to **time.Time** | Event timestamp | [optional] 
+**SrcIP** | Pointer to **string** | Source IP | [optional] 
+**SrcPort** | Pointer to **int32** | Source port | [optional] 
+**SrcHost** | Pointer to **string** | Source host | [optional] 
+**SrcMac** | Pointer to **string** | Source mac address | [optional] 
+**SrcUser** | Pointer to **string** | Source user | [optional] 
+**SrcID** | Pointer to **string** | Source ID | [optional] 
+**DestIP** | Pointer to **string** | Destination IP | [optional] 
+**DestPort** | Pointer to **int32** | Destination port | [optional] 
+**Proto** | Pointer to **string** | Transport layer protocol | [optional] 
+**BytesIn** | Pointer to **int64** | Number of incoming bytes | [optional] 
+**BytesOut** | Pointer to **int64** | Number of outgoing bytes | [optional] 
+**App** | Pointer to **string** | Application layer protocol | [optional] 
+**Action** | Pointer to **string** | Defines if event was allowed or denied | [optional] 
+**Duration** | Pointer to **float64** | Duration of connection | [optional] 
 
 ## Methods
 

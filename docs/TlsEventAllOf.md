@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CertHash** | Pointer to **string** |  | [optional] 
-**Issuer** | Pointer to **string** |  | [optional] 
-**Subject** | Pointer to **string** |  | [optional] 
-**ValidFrom** | Pointer to **time.Time** |  | [optional] 
-**ValidTo** | Pointer to **time.Time** |  | [optional] 
-**DestIP** | Pointer to **string** |  | [optional] 
-**DestPort** | Pointer to **int32** |  | [optional] 
-**Ja3** | Pointer to **string** |  | [optional] 
-**Ja3s** | Pointer to **string** |  | [optional] 
+**CertHash** | Pointer to **string** | Certificate hash | [optional] 
+**Issuer** | Pointer to **string** | Certificate issuer | [optional] 
+**Subject** | Pointer to **string** | Certificate subject | [optional] 
+**ValidFrom** | Pointer to **time.Time** | From when certificate is valid | [optional] 
+**ValidTo** | Pointer to **time.Time** | Certificate expiration date | [optional] 
+**DestIP** | Pointer to **string** | Destination IP | [optional] 
+**DestPort** | Pointer to **int32** | Destination port | [optional] 
+**Ja3** | Pointer to **string** | JA3 fingerprint | [optional] 
+**Ja3s** | Pointer to **string** | JA3S fingerprint | [optional] 
 
 ## Methods
 

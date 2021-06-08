@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Query** | Pointer to **string** |  | [optional] 
-**Qtype** | Pointer to **string** |  | [optional] 
+**Query** | Pointer to **string** | DNS query | [optional] 
+**Qtype** | Pointer to **string** | Query type | [optional] 
 
 ## Methods
 

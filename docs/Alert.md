@@ -4,8 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EventType** | Pointer to **string** |  | [optional] 
-**Event** | Pointer to [**OneOfdnsEventipEventhttpEventtlsEvent**](oneOf&lt;dnsEvent,ipEvent,httpEvent,tlsEvent&gt;.md) |  | [optional] 
+**EventType** | Pointer to **string** | EventType describes type of event object (\&quot;dns\&quot;, \&quot;ip\&quot;, \&quot;http\&quot;, \&quot;tls\&quot;). | [optional] 
+**Threats** | Pointer to **[]string** | Threats associated with alert. | [optional] 
+**Wisdom** | Pointer to [**Wisdom**](Wisdom.md) |  | [optional] 
+**Event** | Pointer to [**OneOfdnsEventipEventhttpEventtlsEvent**](oneOf&lt;dnsEvent,ipEvent,httpEvent,tlsEvent&gt;.md) | One of the *Event schema described in the table below. | [optional] 
 
 ## Methods
 
@@ -50,6 +52,56 @@ SetEventType sets EventType field to given value.
 `func (o *Alert) HasEventType() bool`
 
 HasEventType returns a boolean if a field has been set.
+
+### GetThreats
+
+`func (o *Alert) GetThreats() []string`
+
+GetThreats returns the Threats field if non-nil, zero value otherwise.
+
+### GetThreatsOk
+
+`func (o *Alert) GetThreatsOk() (*[]string, bool)`
+
+GetThreatsOk returns a tuple with the Threats field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThreats
+
+`func (o *Alert) SetThreats(v []string)`
+
+SetThreats sets Threats field to given value.
+
+### HasThreats
+
+`func (o *Alert) HasThreats() bool`
+
+HasThreats returns a boolean if a field has been set.
+
+### GetWisdom
+
+`func (o *Alert) GetWisdom() Wisdom`
+
+GetWisdom returns the Wisdom field if non-nil, zero value otherwise.
+
+### GetWisdomOk
+
+`func (o *Alert) GetWisdomOk() (*Wisdom, bool)`
+
+GetWisdomOk returns a tuple with the Wisdom field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWisdom
+
+`func (o *Alert) SetWisdom(v Wisdom)`
+
+SetWisdom sets Wisdom field to given value.
+
+### HasWisdom
+
+`func (o *Alert) HasWisdom() bool`
+
+HasWisdom returns a boolean if a field has been set.
 
 ### GetEvent
 

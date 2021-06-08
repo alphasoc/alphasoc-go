@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ts** | Pointer to **time.Time** |  | [optional] 
-**SrcIP** | Pointer to **string** |  | [optional] 
-**SrcPort** | Pointer to **int32** |  | [optional] 
-**SrcHost** | Pointer to **string** |  | [optional] 
-**SrcMac** | Pointer to **string** |  | [optional] 
-**SrcUser** | Pointer to **string** |  | [optional] 
-**SrcID** | Pointer to **string** |  | [optional] 
-**Query** | Pointer to **string** |  | [optional] 
-**Qtype** | Pointer to **string** |  | [optional] 
+**Ts** | Pointer to **time.Time** | Event timestamp | [optional] 
+**SrcIP** | Pointer to **string** | Source IP | [optional] 
+**SrcPort** | Pointer to **int32** | Source port | [optional] 
+**SrcHost** | Pointer to **string** | Source host | [optional] 
+**SrcMac** | Pointer to **string** | Source mac address | [optional] 
+**SrcUser** | Pointer to **string** | Source user | [optional] 
+**SrcID** | Pointer to **string** | Source ID | [optional] 
+**Query** | Pointer to **string** | DNS query | [optional] 
+**Qtype** | Pointer to **string** | Query type | [optional] 
 
 ## Methods
 

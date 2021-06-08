@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | Pointer to **string** |  | [optional] 
 **Termination** | Pointer to **bool** |  | [optional] 
-**Duration** | Pointer to **int64** |  | [optional] 
+**Duration** | Pointer to **int64** | Duration of the event | [optional] 
 
 ## Methods
 

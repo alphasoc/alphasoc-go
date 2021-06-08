@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | **string** |  | 
-**Severity** | **int32** |  | 
+**Title** | **string** | Human readable description of the threat | 
+**Severity** | **int32** | Severity of the threat | 
 **Policy** | Pointer to **bool** |  | [optional] 
 
 ## Methods

@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Follow** | Pointer to **string** |  | [optional] 
-**More** | Pointer to **bool** |  | [optional] 
-**Alerts** | Pointer to [**[]Alert**](Alert.md) |  | [optional] 
+**Follow** | Pointer to **string** | Page bookmark. Can be passed to consecutive request to retrieve only new alerts since the last query. | [optional] 
+**More** | Pointer to **bool** | Indicates if there are more alerts to retrieve. | [optional] 
+**Alerts** | Pointer to [**[]Alert**](Alert.md) | Array of alerts. | [optional] 
+**Threats** | Pointer to [**map[string]Threat**](Threat.md) | Dictionary containing definition of threats. | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetAlerts sets Alerts field to given value.
 `func (o *Alerts) HasAlerts() bool`
 
 HasAlerts returns a boolean if a field has been set.
+
+### GetThreats
+
+`func (o *Alerts) GetThreats() map[string]Threat`
+
+GetThreats returns the Threats field if non-nil, zero value otherwise.
+
+### GetThreatsOk
+
+`func (o *Alerts) GetThreatsOk() (*map[string]Threat, bool)`
+
+GetThreatsOk returns a tuple with the Threats field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThreats
+
+`func (o *Alerts) SetThreats(v map[string]Threat)`
+
+SetThreats sets Threats field to given value.
+
+### HasThreats
+
+`func (o *Alerts) HasThreats() bool`
+
+HasThreats returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

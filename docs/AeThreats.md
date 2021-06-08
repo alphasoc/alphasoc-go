@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Threats** | Pointer to [**map[string]Threat**](Threat.md) |  | [optional] 
+**Threats** | Pointer to [**map[string]Threat**](Threat.md) | Dictionary containing definition of threats. | [optional] 
 
 ## Methods
 

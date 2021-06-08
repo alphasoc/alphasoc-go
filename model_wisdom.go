@@ -14,33 +14,34 @@ import (
 	"encoding/json"
 )
 
-// AeFlags struct for AeFlags
-type AeFlags struct {
-	// Dictionary that contains flags descriptions
-	Flags *map[string]Flag `json:"flags,omitempty"`
+// Wisdom struct for Wisdom
+type Wisdom struct {
+	Flags  *[]string `json:"flags,omitempty"`
+	Labels *[]string `json:"labels,omitempty"`
+	Domain *string   `json:"domain,omitempty"`
 }
 
-// NewAeFlags instantiates a new AeFlags object
+// NewWisdom instantiates a new Wisdom object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAeFlags() *AeFlags {
-	this := AeFlags{}
+func NewWisdom() *Wisdom {
+	this := Wisdom{}
 	return &this
 }
 
-// NewAeFlagsWithDefaults instantiates a new AeFlags object
+// NewWisdomWithDefaults instantiates a new Wisdom object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAeFlagsWithDefaults() *AeFlags {
-	this := AeFlags{}
+func NewWisdomWithDefaults() *Wisdom {
+	this := Wisdom{}
 	return &this
 }
 
 // GetFlags returns the Flags field value if set, zero value otherwise.
-func (o *AeFlags) GetFlags() map[string]Flag {
+func (o *Wisdom) GetFlags() []string {
 	if o == nil || o.Flags == nil {
-		var ret map[string]Flag
+		var ret []string
 		return ret
 	}
 	return *o.Flags
@@ -48,7 +49,7 @@ func (o *AeFlags) GetFlags() map[string]Flag {
 
 // GetFlagsOk returns a tuple with the Flags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AeFlags) GetFlagsOk() (*map[string]Flag, bool) {
+func (o *Wisdom) GetFlagsOk() (*[]string, bool) {
 	if o == nil || o.Flags == nil {
 		return nil, false
 	}
@@ -56,7 +57,7 @@ func (o *AeFlags) GetFlagsOk() (*map[string]Flag, bool) {
 }
 
 // HasFlags returns a boolean if a field has been set.
-func (o *AeFlags) HasFlags() bool {
+func (o *Wisdom) HasFlags() bool {
 	if o != nil && o.Flags != nil {
 		return true
 	}
@@ -64,51 +65,121 @@ func (o *AeFlags) HasFlags() bool {
 	return false
 }
 
-// SetFlags gets a reference to the given map[string]Flag and assigns it to the Flags field.
-func (o *AeFlags) SetFlags(v map[string]Flag) {
+// SetFlags gets a reference to the given []string and assigns it to the Flags field.
+func (o *Wisdom) SetFlags(v []string) {
 	o.Flags = &v
 }
 
-func (o AeFlags) MarshalJSON() ([]byte, error) {
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *Wisdom) GetLabels() []string {
+	if o == nil || o.Labels == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Wisdom) GetLabelsOk() (*[]string, bool) {
+	if o == nil || o.Labels == nil {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *Wisdom) HasLabels() bool {
+	if o != nil && o.Labels != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given []string and assigns it to the Labels field.
+func (o *Wisdom) SetLabels(v []string) {
+	o.Labels = &v
+}
+
+// GetDomain returns the Domain field value if set, zero value otherwise.
+func (o *Wisdom) GetDomain() string {
+	if o == nil || o.Domain == nil {
+		var ret string
+		return ret
+	}
+	return *o.Domain
+}
+
+// GetDomainOk returns a tuple with the Domain field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Wisdom) GetDomainOk() (*string, bool) {
+	if o == nil || o.Domain == nil {
+		return nil, false
+	}
+	return o.Domain, true
+}
+
+// HasDomain returns a boolean if a field has been set.
+func (o *Wisdom) HasDomain() bool {
+	if o != nil && o.Domain != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDomain gets a reference to the given string and assigns it to the Domain field.
+func (o *Wisdom) SetDomain(v string) {
+	o.Domain = &v
+}
+
+func (o Wisdom) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Flags != nil {
 		toSerialize["flags"] = o.Flags
 	}
+	if o.Labels != nil {
+		toSerialize["labels"] = o.Labels
+	}
+	if o.Domain != nil {
+		toSerialize["domain"] = o.Domain
+	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableAeFlags struct {
-	value *AeFlags
+type NullableWisdom struct {
+	value *Wisdom
 	isSet bool
 }
 
-func (v NullableAeFlags) Get() *AeFlags {
+func (v NullableWisdom) Get() *Wisdom {
 	return v.value
 }
 
-func (v *NullableAeFlags) Set(val *AeFlags) {
+func (v *NullableWisdom) Set(val *Wisdom) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAeFlags) IsSet() bool {
+func (v NullableWisdom) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableAeFlags) Unset() {
+func (v *NullableWisdom) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAeFlags(val *AeFlags) *NullableAeFlags {
-	return &NullableAeFlags{value: val, isSet: true}
+func NewNullableWisdom(val *Wisdom) *NullableWisdom {
+	return &NullableWisdom{value: val, isSet: true}
 }
 
-func (v NullableAeFlags) MarshalJSON() ([]byte, error) {
+func (v NullableWisdom) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAeFlags) UnmarshalJSON(src []byte) error {
+func (v *NullableWisdom) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

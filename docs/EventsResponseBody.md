@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Received** | Pointer to **int32** |  | [optional] 
-**Accepted** | Pointer to **int32** |  | [optional] 
+**Received** | Pointer to **int32** | Number of received events | [optional] 
+**Accepted** | Pointer to **int32** | Number of accepted events | [optional] 
 
 ## Methods
 
