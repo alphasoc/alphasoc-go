@@ -22,7 +22,7 @@ type Client struct {
 }
 
 // NewClientFromEnv creates new API client. It takes api key from ASOC_API_KEY env variable.
-// Default http client timeout is set to 30 seconds. It can be changed with SetTimeout method.
+// Client uses default http client.
 func NewClientFromEnv() (*Client, error) {
 	apiKey := os.Getenv("ASOC_API_KEY")
 	if apiKey == "" {
@@ -32,17 +32,16 @@ func NewClientFromEnv() (*Client, error) {
 	return NewClient(apiKey), nil
 }
 
-// NewClient creates new API client.
-// Default http client timeout is set to 30 seconds. It can be changed with SetTimeout method.
+// NewClient creates new API client. Client uses default http client.
 func NewClient(apiKey string) *Client {
 	return &Client{
 		baseURL: APIBase,
 		apiKey:  apiKey,
-		client:  &http.Client{Timeout: 30 * time.Second},
+		client:  http.DefaultClient,
 	}
 }
 
-// SetTimeout allows to change http client timeout
+// SetTimeout allows to set http client timeout.
 func (c *Client) SetTimeout(t time.Duration) {
 	c.client.Timeout = t
 }
