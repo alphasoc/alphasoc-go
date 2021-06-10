@@ -24,10 +24,13 @@ func TestGetAlerts_CheckRequestPath(t *testing.T) {
 	}))
 	defer ts.Close()
 
-	c := NewClient("apiKey")
+	c, err := New(WithAPIKey("apikey"))
+	if err != nil {
+		t.Fatal("Error creating api client", err)
+	}
 	c.baseURL = ts.URL
 
-	_, err := c.GetAlertsCtx(ctx, "")
+	_, err = c.GetAlerts(ctx, "")
 	if err != nil {
 		t.Log(err)
 	}
@@ -53,10 +56,13 @@ func TestGetAlerts_CheckIfAPIKeyIsAddedToRequest(t *testing.T) {
 	}))
 	defer ts.Close()
 
-	c := NewClient("apikey123")
+	c, err := New(WithAPIKey("apikey123"))
+	if err != nil {
+		t.Fatal("Error creating api client", err)
+	}
 	c.baseURL = ts.URL
 
-	_, err := c.GetAlertsCtx(ctx, "")
+	_, err = c.GetAlerts(ctx, "")
 	if err != nil {
 		t.Log(err)
 	}
@@ -80,10 +86,13 @@ func TestGetAlerts_CheckIfParametersAreAddedToRequest(t *testing.T) {
 	}))
 	defer ts.Close()
 
-	c := NewClient("apikey")
+	c, err := New(WithAPIKey("apikey"))
+	if err != nil {
+		t.Fatal("Error creating api client", err)
+	}
 	c.baseURL = ts.URL
 
-	_, err := c.GetAlertsCtx(ctx, "follow123")
+	_, err = c.GetAlerts(ctx, "follow123")
 	apiErr, ok := err.(APIError)
 	if err != nil && ok {
 		if apiErr.StatusCode == http.StatusOK {
@@ -135,10 +144,13 @@ func TestGetAlerts_AlertsResponseParsedProperly(t *testing.T) {
 	}))
 	defer ts.Close()
 
-	c := NewClient("apikey")
+	c, err := New(WithAPIKey("apikey"))
+	if err != nil {
+		t.Fatal("Error creating api client", err)
+	}
 	c.baseURL = ts.URL
 
-	alerts, err := c.GetAlertsCtx(ctx, "")
+	alerts, err := c.GetAlerts(ctx, "")
 	if err != nil {
 		t.Fatalf("Error during request execution: %+v", err)
 	}
@@ -186,10 +198,13 @@ func TestGetAlerts_CheckResponseErrors(t *testing.T) {
 			rw.Write([]byte(test.respBody))
 		}))
 
-		c := NewClient("apikey")
+		c, err := New(WithAPIKey("apikey"))
+		if err != nil {
+			t.Fatal("Error creating api client", err)
+		}
 		c.baseURL = ts.URL
 
-		_, err := c.GetAlertsCtx(ctx, "")
+		_, err = c.GetAlerts(ctx, "")
 		if err == nil {
 			t.Fatal("Expected errror, got nil, testCase:", test)
 		}

@@ -2,16 +2,15 @@ package alphasoc
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"io"
 	"net/http"
 	"os"
-	"time"
 )
 
 const (
 	APIBase        = "https://api.alphasoc.net"
+	APIKeyEnvVar   = "ALPHASOC_API_KEY"
 	alertsEndpoint = "v1/alerts"
 )
 
@@ -21,29 +20,45 @@ type Client struct {
 	client  *http.Client
 }
 
-// NewClientFromEnv creates new API client. It takes api key from ASOC_API_KEY env variable.
-// Client uses default http client.
-func NewClientFromEnv() (*Client, error) {
-	apiKey := os.Getenv("ASOC_API_KEY")
-	if apiKey == "" {
-		return nil, errors.New("required environment variable ASOC_API_KEY not defined")
-	}
+type Option func(*Client)
 
-	return NewClient(apiKey), nil
-}
+// New creates new API client. By default it loads APIKey from ALPHASOC_API_KEY
+// env variable and uses Default http Client.
+// To change default values use WithAPIKey and WithHTTPClient Options.
+func New(opts ...Option) (*Client, error) {
+	apiKey := os.Getenv(APIKeyEnvVar)
 
-// NewClient creates new API client. Client uses default http client.
-func NewClient(apiKey string) *Client {
-	return &Client{
+	c := &Client{
 		baseURL: APIBase,
 		apiKey:  apiKey,
 		client:  http.DefaultClient,
 	}
+
+	for _, option := range opts {
+		option(c)
+	}
+
+	if c.apiKey == "" {
+		return nil, fmt.Errorf("apiKey cannot be empty, set it using %s env variable or WithAPIKey Option", APIKeyEnvVar)
+	}
+
+	return c, nil
 }
 
-// SetTimeout allows to set http client timeout.
-func (c *Client) SetTimeout(t time.Duration) {
-	c.client.Timeout = t
+// WithAPIKey allows creating Client with provided apiKey
+// instead of taking it from environment variable.
+func WithAPIKey(apiKey string) Option {
+	return func(c *Client) {
+		c.apiKey = apiKey
+	}
+}
+
+// WithHTTPClient allows creating Client with provided http client
+// instead of go default client.
+func WithHTTPClient(client *http.Client) Option {
+	return func(c *Client) {
+		c.client = client
+	}
 }
 
 func (c *Client) prepareRequest(ctx context.Context, method, endpoint string, body io.Reader) (*http.Request, error) {

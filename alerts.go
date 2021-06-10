@@ -5,17 +5,15 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+
+	"github.com/alphasoc/alphasoc-go/models"
 )
 
-func (c *Client) GetAlerts(follow string) (*Alerts, error) {
-	return c.GetAlertsCtx(context.Background(), follow)
-}
-
-// GetAlertsCtx retrieves alerts from alphasoc API.
+// GetAlerts retrieves alerts from alphasoc API.
 // Follow parameter is used to retrieve new alerts since last request.
 // If response is different than 200 OK or response cannot be decoded
 // alphasoc.Error is returned, which contains error Message and response StatusCode.
-func (c *Client) GetAlertsCtx(ctx context.Context, follow string) (*Alerts, error) {
+func (c *Client) GetAlerts(ctx context.Context, follow string) (*models.Alerts, error) {
 	req, err := c.prepareRequest(ctx, "GET", alertsEndpoint, nil)
 	if err != nil {
 		return nil, err
@@ -37,7 +35,7 @@ func (c *Client) GetAlertsCtx(ctx context.Context, follow string) (*Alerts, erro
 
 	switch resp.StatusCode {
 	case http.StatusOK:
-		alerts := &Alerts{}
+		alerts := &models.Alerts{}
 		err := decoder.Decode(alerts)
 		if err != nil {
 			return nil, APIError{fmt.Sprintf("parsing alerts: %v", err), resp.StatusCode}
@@ -46,7 +44,7 @@ func (c *Client) GetAlertsCtx(ctx context.Context, follow string) (*Alerts, erro
 		return alerts, nil
 
 	case http.StatusBadRequest:
-		errMsg := &ErrorMessage{}
+		errMsg := &models.ErrorMessage{}
 		err := decoder.Decode(errMsg)
 		if err != nil {
 			return nil, APIError{fmt.Sprintf("status bad request, json decode error %v", err), resp.StatusCode}
@@ -59,7 +57,7 @@ func (c *Client) GetAlertsCtx(ctx context.Context, follow string) (*Alerts, erro
 		return nil, APIError{*errMsg.Message, resp.StatusCode}
 
 	case http.StatusUnauthorized:
-		errMsg := &ErrorMessage{}
+		errMsg := &models.ErrorMessage{}
 		err := decoder.Decode(errMsg)
 		if err != nil {
 			return nil, APIError{fmt.Sprintf("status unauthorized, json decode error %v", err), resp.StatusCode}
@@ -72,7 +70,7 @@ func (c *Client) GetAlertsCtx(ctx context.Context, follow string) (*Alerts, erro
 		return nil, APIError{*errMsg.Message, resp.StatusCode}
 
 	case http.StatusForbidden:
-		errMsg := &ErrorMessage{}
+		errMsg := &models.ErrorMessage{}
 		err := decoder.Decode(errMsg)
 		if err != nil {
 			return nil, APIError{fmt.Sprintf("status forbidden, json decode error %v", err), resp.StatusCode}
@@ -85,7 +83,7 @@ func (c *Client) GetAlertsCtx(ctx context.Context, follow string) (*Alerts, erro
 		return nil, APIError{*errMsg.Message, resp.StatusCode}
 
 	case http.StatusTooManyRequests:
-		errMsg := &ErrorMessage{}
+		errMsg := &models.ErrorMessage{}
 		err := decoder.Decode(errMsg)
 		if err != nil {
 			return nil, APIError{fmt.Sprintf("status too many requests, json decode error %v", err), resp.StatusCode}
