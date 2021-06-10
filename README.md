@@ -13,17 +13,20 @@ Go SDK for interacting with [AlphaSOC API](https://docs.alphasoc.com/api/api/).
 ### Creating client
 
 There are two ways to create api client:
-1. By passing api key as an argument to function.
+1. By storing api key in environment variable `ALPHASOC_API_KEY`.
 ```go
-client := alphasoc.NewClient("your-api-key")
+client := alphasoc.New()
 ```
 
-2. By storing api key in environment variable `ASOC_API_KEY`.
+2. By passing api key as an Option.
 ```go
-client, err := alphasoc.NewClientFromEnv()
+client, err := alphasoc.New(alphasoc.WithAPIKey("your-api-key"))
 ```
 
-Client uses default http client from go net/http package. Requests can be invoked with context or without it. It is possible to set http client timeout with `client.SetTimeout(time.Duration)` method.
+Client uses default http client from go net/http package, but if needed it can be changed by passing `alphasoc.WithHTTPClient(*http.Client)` Option while creating API Client.
+```go
+client, err := alphasoc.New(alphasoc.WithHTTPClient(httpClientWithCustomOptions))
+```
 
 
 
@@ -44,12 +47,16 @@ import (
 )
 
 func main() {
-	client := alphasoc.NewClient("your-api-key")
+	// Creating api client with default options
+	client, err := alphasoc.New()
+	if err != nil {
+		log.Fatal("creating api client", err)
+	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
-	alerts, err := client.GetAlertsCtx(ctx, "last-follow-bookmark")
+	alerts, err := client.GetAlerts(ctx, "last-follow-bookmark")
 	if err != nil {
 		// Any error returned by API is alphasoc.APIError.
 		// It contains StatusCode and Message from API.
