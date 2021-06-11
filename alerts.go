@@ -9,11 +9,11 @@ import (
 	"github.com/alphasoc/alphasoc-go/models"
 )
 
-// GetAlerts retrieves alerts from alphasoc API.
+// Alerts retrieves alerts from alphasoc API.
 // Follow parameter is used to retrieve new alerts since last request.
 // If response is different than 200 OK or response cannot be decoded
 // alphasoc.Error is returned, which contains error Message and response StatusCode.
-func (c *Client) GetAlerts(ctx context.Context, follow string) (*models.Alerts, error) {
+func (c *Client) Alerts(ctx context.Context, follow string) (*models.Alerts, error) {
 	req, err := c.prepareRequest(ctx, "GET", alertsEndpoint, nil)
 	if err != nil {
 		return nil, err

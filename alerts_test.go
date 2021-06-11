@@ -30,7 +30,7 @@ func TestGetAlerts_CheckRequestPath(t *testing.T) {
 	}
 	c.baseURL = ts.URL
 
-	_, err = c.GetAlerts(ctx, "")
+	_, err = c.Alerts(ctx, "")
 	if err != nil {
 		t.Log(err)
 	}
@@ -62,7 +62,7 @@ func TestGetAlerts_CheckIfAPIKeyIsAddedToRequest(t *testing.T) {
 	}
 	c.baseURL = ts.URL
 
-	_, err = c.GetAlerts(ctx, "")
+	_, err = c.Alerts(ctx, "")
 	if err != nil {
 		t.Log(err)
 	}
@@ -92,7 +92,7 @@ func TestGetAlerts_CheckIfParametersAreAddedToRequest(t *testing.T) {
 	}
 	c.baseURL = ts.URL
 
-	_, err = c.GetAlerts(ctx, "follow123")
+	_, err = c.Alerts(ctx, "follow123")
 	apiErr, ok := err.(APIError)
 	if err != nil && ok {
 		if apiErr.StatusCode == http.StatusOK {
@@ -150,7 +150,7 @@ func TestGetAlerts_AlertsResponseParsedProperly(t *testing.T) {
 	}
 	c.baseURL = ts.URL
 
-	alerts, err := c.GetAlerts(ctx, "")
+	alerts, err := c.Alerts(ctx, "")
 	if err != nil {
 		t.Fatalf("Error during request execution: %+v", err)
 	}
@@ -204,7 +204,7 @@ func TestGetAlerts_CheckResponseErrors(t *testing.T) {
 		}
 		c.baseURL = ts.URL
 
-		_, err = c.GetAlerts(ctx, "")
+		_, err = c.Alerts(ctx, "")
 		if err == nil {
 			t.Fatal("Expected errror, got nil, testCase:", test)
 		}

@@ -53,27 +53,43 @@ func main() {
 		log.Fatal("creating api client", err)
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
+	var follow string
 
-	alerts, err := client.GetAlerts(ctx, "last-follow-bookmark")
-	if err != nil {
-		// Any error returned by API is alphasoc.APIError.
-		// It contains StatusCode and Message from API.
-		if asocErr, ok := err.(alphasoc.APIError); ok {
-			if asocErr.StatusCode == http.StatusTooManyRequests {
-				// If returned StatusCode is 429, try again later.
-			} else {
-				// Other error returned by API.
+	for {
+		ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+
+		alerts, err := client.Alerts(ctx, follow)
+		cancel()
+		if err != nil {
+			// Any error returned by API is alphasoc.APIError.
+			// It contains StatusCode and Message from API.
+			if apiErr, ok := err.(alphasoc.APIError); ok {
+				if apiErr.StatusCode == http.StatusTooManyRequests {
+					// If returned StatusCode is 429, try again later.
+					time.Sleep(1 * time.Minute)
+					continue
+				} else {
+					// Other error returned by API.
+					log.Fatal("api error", err)
+				}
 			}
+
+			// Error creating request or sending request
+			log.Fatal("retrieving alerts", err)
 		}
 
-		// Error creating request or sending request
-		log.Fatal("retrieving alerts", err)
-	}
+		// We have retrieved alerts
 
-	// We have retrieved alerts
+		// Set next follow bookmark
+		follow = *alerts.Follow
+
+		// No more alerts at the moment
+		if !*alerts.More {
+			return
+		}
+	}
 }
+
 ```
 
 
