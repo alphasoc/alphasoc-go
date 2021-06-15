@@ -1,38 +1,10 @@
+[![GoDoc](https://godoc.org/github.com/golang/gddo?status.svg)](http://godoc.org/github.com/alphasoc/alphasoc-go)
+
 # AlphaSOC Go
-
-
 
 Go SDK for interacting with [AlphaSOC API](https://docs.alphasoc.com/api/api/).
 
-
-
 ## Usage
-
-
-
-### Creating client
-
-There are two ways to create api client:
-1. By storing api key in environment variable `ALPHASOC_API_KEY`.
-```go
-client := alphasoc.New()
-```
-
-2. By passing api key as an Option.
-```go
-client, err := alphasoc.New(alphasoc.WithAPIKey("your-api-key"))
-```
-
-Client uses default http client from go net/http package, but if needed it can be changed by passing `alphasoc.WithHTTPClient(*http.Client)` Option while creating API Client.
-```go
-client, err := alphasoc.New(alphasoc.WithHTTPClient(httpClientWithCustomOptions))
-```
-
-
-
-### Retrieving alerts
-
-[Alerts](https://docs.alphasoc.com/api/api/#retrieving-alerts) can be retrieved with `client.GetAlerts()` method.
 
 ```go
 package main
@@ -47,12 +19,20 @@ import (
 )
 
 func main() {
-	// Creating api client with default options
+	// Create the client with default options. If you want to pass your
+	// API key directly instead of getting it from the ALPHASOC_API_KEY
+	// environment variable, use the WithAPIKey option:
+	//
+	// client, err := alphasoc.New(alphasoc.WithAPIKey("your-api-key"))
+	//
 	client, err := alphasoc.New()
 	if err != nil {
 		log.Fatal("creating api client", err)
 	}
 
+	// In every response there is a `Follow` bookmark attached, which should be passed
+	// to consecutive requests as a parameter, so only new alerts are being returned.
+	// Once the last page is returned, `More` property in the response is set to false.
 	var follow string
 
 	for {
@@ -60,12 +40,12 @@ func main() {
 
 		alerts, err := client.Alerts(ctx, follow)
 		cancel()
+
 		if err != nil {
-			// Any error returned by API is alphasoc.APIError.
-			// It contains StatusCode and Message from API.
+			// Errors returned by the API are of alphasoc.APIError type.
 			if apiErr, ok := err.(alphasoc.APIError); ok {
 				if apiErr.StatusCode == http.StatusTooManyRequests {
-					// If returned StatusCode is 429, try again later.
+					// If StatusCode is 429, try again later.
 					time.Sleep(1 * time.Minute)
 					continue
 				} else {
@@ -74,26 +54,22 @@ func main() {
 				}
 			}
 
-			// Error creating request or sending request
+			// An error not directly related to the API has occurred
+			// (e.g. a network error).
 			log.Fatal("retrieving alerts", err)
 		}
 
-		// We have retrieved alerts
-
-		// Set next follow bookmark
-		follow = *alerts.Follow
+		// We have retrieved the alerts
+		fmt.Println(alerts)
 
 		// No more alerts at the moment
 		if !*alerts.More {
 			return
 		}
+
+		// Set next follow bookmark
+		follow = *alerts.Follow
 	}
 }
 
 ```
-
-
-
-## Errors
-
-Any [response](https://docs.alphasoc.com/api/api/#responses) from API other than 200 is wrapped as `alphasoc.APIError`. It contains StatusCode and error Message returned by API.

@@ -22,8 +22,8 @@ type Client struct {
 
 type Option func(*Client)
 
-// New creates new API client. By default it loads APIKey from ALPHASOC_API_KEY
-// env variable and uses Default http Client.
+// New creates a new API client. By default it loads the API key from ALPHASOC_API_KEY
+// environment variable and uses the default http.Client.
 // To change default values use WithAPIKey and WithHTTPClient Options.
 func New(opts ...Option) (*Client, error) {
 	apiKey := os.Getenv(APIKeyEnvVar)
@@ -45,16 +45,16 @@ func New(opts ...Option) (*Client, error) {
 	return c, nil
 }
 
-// WithAPIKey allows creating Client with provided apiKey
-// instead of taking it from environment variable.
+// WithAPIKey specifies an API key to be used as the basis for authentication
+// instead of taking it from the environment variable.
 func WithAPIKey(apiKey string) Option {
 	return func(c *Client) {
 		c.apiKey = apiKey
 	}
 }
 
-// WithHTTPClient allows creating Client with provided http client
-// instead of go default client.
+// WithHTTPClient specifies the HTTP client to use as the basis of communications
+// instead of the default one.
 func WithHTTPClient(client *http.Client) Option {
 	return func(c *Client) {
 		c.client = client
